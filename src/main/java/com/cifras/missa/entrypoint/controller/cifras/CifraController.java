@@ -1,6 +1,6 @@
 package com.cifras.missa.entrypoint.controller.cifras;
 
-import com.cifras.missa.core.domain.CifraDto;
+import com.cifras.missa.core.domain.dto.CifraDto;
 import com.cifras.missa.core.usecases.CifraUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @RestController
@@ -32,7 +33,7 @@ public class CifraController {
     }
 
     @GetMapping(value = "/{musica}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Mono<CifraDto>> consulta(@PathVariable(name = "id") String musica){
+    public ResponseEntity<Mono<List<CifraDto>>> consulta(@PathVariable(name = "id") String musica){
         return ResponseEntity.ok(cifraUseCase.consultarMusica(musica));
     }
 
